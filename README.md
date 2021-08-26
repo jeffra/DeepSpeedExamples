@@ -13,8 +13,8 @@ Nodes | Parameter count | Hidden dimension | Number of layers | Batch size | Mod
 
 Please refer to the following two files:
 
-1) `Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh`
-2) `Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json`
+1) [Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh)
+2) [Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json)
 
 ## Important Notes
 * Please review the run script first, there are some required edits to ensure torch distributed works properly (e.g., set torch distributed master address).
