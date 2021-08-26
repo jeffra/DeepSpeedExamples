@@ -19,7 +19,8 @@ Please refer to the following two files:
 ## Docker
 * We've created a docker image that includes a small amount of training data that we use for performance testing.
 * Image built and available on [docker hub](https://hub.docker.com/r/deepspeed/sc21) via: `docker pull deepspeed/sc21:latest`
-* See [Dockerfile](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/sc21-docker/Dockerfile) for more details
+* See [Dockerfile](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/sc21-docker/Dockerfile) for more details.
+* The [SC21-DeepSpeed runtime](https://github.com/jeffra/deepspeed/tree/sc21i) is pre-installed in this docker image.
 
 ## Important Notes
 * Please review the run script first, there are some required edits to ensure torch distributed works properly (e.g., set torch distributed master address).
