@@ -1,17 +1,22 @@
 
-# DeepSpeed
-This repo contains example models that use [DeepSpeed](https://github.com/microsoft/DeepSpeed).
+# SC21 Instructions
 
-# Contributing
+Goal: reproduce running a 50 billion parameter model with x16 V100s on [Cori](https://docs-dev.nersc.gov/cgpu/hardware/). In order to even start training this model size with this limited hardware budget we will utilize all of the features outlined in our SC21 paper "ZeRO-Infinity: Breaking the GPU Memory Wall for Extreme Scale Deep Learning".
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+In this experiment we are not training a model end-to-end, we will just show that we are able to train 100 iterations.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+The specific model architecture chosen here is outlined in Table 1 of our paper but is reproduced here:
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+Nodes | Parameter count | Hidden dimension | Number of layers | Batch size | Model parallelism | Parameter offload | Optimizer offload
+----- | --------------- | ---------------- | ---------------- | ---------- | ----------------- | ----------------- | -----------------
+1     | 50 billion      | 8192             | 62               | 4          | 1                 | CPU               | NVMe
+
+Please refer to the following two files:
+
+1) `Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh`
+2) `Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json`
+
+## Important Notes
+* Please review the run script first, there are some required edits to ensure torch distributed works properly (e.g., set torch distributed master address).
+* You'll want to launch the `run_sc21.sh` script passing in the appropriate node rank (i.e., 0 or 1). 
+
