@@ -1,10 +1,31 @@
 #!/bin/bash
 
-DATA_DIR=${HOME}/megatron-small-indexed/
-DS_CONFIG=${HOME}/DS-SC21/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json
+DATA_DIR=/sc21-code/data
+DS_CONFIG=/sc21-code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json
+
+######################################################
+# Batch size of 4 should work on Cori with only 2    #
+# nodes, however we're being conservative. Feel free #
+# to try batch size of 4 if feeling ambitious :)     #
+######################################################
 BATCH_SIZE=2
 
-deepspeed --num_nodes 1 --num_gpus 16 \
+######################################################
+# Update below parameters to work with your system   #
+######################################################
+NODE_RANK=$1 # pass node rank, in this case 0 or 1
+NUM_NODES=2
+GPUS_PER_NODE=8
+MASTER_IP="192.168.1.1" # set to node-0 ip address
+MASTER_PORT=29500
+######################################################
+
+python -m torch.distributed.launch \
+    --nproc_per_node=${GPUS_PER_NODE} \
+    --nnodes=${NUM_NODES} \
+    --node_rank=${NODE_RANK} \
+    --master_addr=${MASTER_IP} \
+    --master_port=${MASTER_PORT} \
     pretrain_gpt2.py \
     --model-parallel-size 1 \
     --num-layers 62 \
@@ -45,5 +66,6 @@ deepspeed --num_nodes 1 --num_gpus 16 \
     --partition-activations \
     --checkpoint-in-cpu \
     --synchronize-each-layer \
-    --contigious-checkpointing
+    --contigious-checkpointing \
+    --exit-interval 100
 

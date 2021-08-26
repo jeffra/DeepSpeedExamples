@@ -1,4 +1,14 @@
 {
+    "swap_tensor":{
+        "folder":"/local_nvme",
+        "fp16_params":false,
+        "fp16_params_buffer_size":1000000000.0,
+        "max_fp16_params_in_cpu":1000000000.0,
+        "optimizer":true,
+        "optimizer_buffer_count":4,
+        "pipeline_read":false,
+        "pipeline_write":false
+    },
     "aio":{
         "block_size":1048576,
         "overlap_events":true,
@@ -13,30 +23,20 @@
         "loss_scale_window":1000,
         "min_loss_scale":1
     },
-    "gradient_accumulation_steps":1,
     "gradient_clipping":1.0,
     "steps_per_print":1,
-    "swap_tensor":{
-        "folder":"/local_nvme",
-        "fp16_params":false,
-        "fp16_params_buffer_size":1000000000.0,
-        "max_fp16_params_in_cpu":1000000000.0,
-        "optimizer":true,
-        "optimizer_buffer_count":4,
-        "pipeline_read":false,
-        "pipeline_write":false
-    },
-    "train_micro_batch_size_per_gpu":8,
+    "train_micro_batch_size_per_gpu":2,
+    "gradient_accumulation_steps":1,
     "wall_clock_breakdown":true,
     "zero_allow_untested_optimizer":false,
     "zero_optimization":{
+        "stage":3,
         "contiguous_gradients":true,
         "cpu_offload":true,
         "cpu_offload_params":true,
         "cpu_offload_use_pin_memory":true,
         "overlap_comm":true,
         "reduce_bucket_size":100000000.0,
-        "stage":3,
         "stage3_max_live_parameters":1000000000.0,
         "stage3_max_reuse_distance":100000000.0,
         "stage3_param_persitance_threshold":100000.0,
