@@ -16,6 +16,11 @@ Please refer to the following two files:
 1) [Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh)
 2) [Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json)
 
+## Docker
+* We've created a docker image that includes a small amount of training data that we use for performance testing.
+* Image built and available on [docker hub](https://hub.docker.com/r/deepspeed/sc21) via: `docker pull deepspeed/sc21:latest`
+* See [Dockerfile](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/sc21-docker/Dockerfile) for more details
+
 ## Important Notes
 * Please review the run script first, there are some required edits to ensure torch distributed works properly (e.g., set torch distributed master address).
 * You'll want to launch the `run_sc21.sh` script passing in the appropriate node rank (i.e., 0 or 1). 
