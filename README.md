@@ -19,4 +19,14 @@ Please refer to the following two files:
 ## Important Notes
 * Please review the run script first, there are some required edits to ensure torch distributed works properly (e.g., set torch distributed master address).
 * You'll want to launch the `run_sc21.sh` script passing in the appropriate node rank (i.e., 0 or 1). 
+* In `examples/ds_zero3_sc21.json` you'll need to update the swap_tensor folder to your local NVMe path you have write access to, current it is set to `"/local_nvme"`. For this model we will need around 500 GB per node of available space to store temporary optimizer state during training.
 
+```json
+{
+  "swap_tensor": {
+    "folder": "/local_nvme",
+    ...
+  },
+  ...
+}
+```
