@@ -11,10 +11,11 @@ Nodes | Parameter count | Hidden dimension | Number of layers | Batch size | Mod
 ----- | --------------- | ---------------- | ---------------- | ---------- | ----------------- | ----------------- | -----------------
 1     | 50 billion      | 8192             | 62               | 4          | 1                 | CPU               | NVMe
 
-Please refer to the following two files:
+Please refer to the following three files:
 
 1) [Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21.sh)
-2) [Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json)
+2) [Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21_small_test.sh](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/run_sc21_small_test.sh)
+3) [Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json](https://github.com/jeffra/DeepSpeedExamples/blob/sc21i/Megatron-LM-v1.1.5-ZeRO3/examples/ds_zero3_sc21.json)
 
 ## Docker
 * We've created a docker image that includes a small amount of training data that we use for performance testing.
